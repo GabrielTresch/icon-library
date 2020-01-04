@@ -1,9 +1,8 @@
 import React from 'react';
+import Layout from './containers/LayoutContainer';
 
-function App() {
-  return (
-    <h1>Icon Library</h1>
-  );
-}
+const App = () => (
+  <Layout />
+);
 
 export default App;
