@@ -1,29 +1,25 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
-import { Dropbox } from 'dropbox';
-import axiox from 'axios';
+import PropTypes from 'prop-types';
+import IconList from '../api/IconsList';
+// import Icon from '../components/Icon';
 
-const IconContainer = () => {
-  const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axiox });
-
-  const [folders, setFolders] = useState([]);
-
+const IconContainer = ({ path }) => {
+  const [iconList, setIconList] = useState([]);
   useEffect(() => {
-    dbx.filesListFolder({ path: '' }).then((data) => { setFolders(data.entries); });
-  }, []);
-
-  console.log(folders);
+    IconList(path).then((data) => (setIconList(data)));
+  }, [path]);
   return (
     <>
       <h1>My dropbox icon library</h1>
-      <div>
-        {folders.map((value) => (
-          <p key={value.name}>{value.path_display}</p>
-        ))}
-      </div>
+      {iconList.map((value) => (
+        <p key={value.id}>{value.name}</p>
+      ))}
     </>
   );
+};
+
+IconContainer.propTypes = {
+  path: PropTypes.array.isRequired,
 };
 
 export default IconContainer;
