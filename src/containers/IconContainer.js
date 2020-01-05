@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import IconList from '../api/IconsList';
-// import Icon from '../components/Icon';
+import Icon from '../components/Icon';
 
 const IconContainer = ({ path }) => {
   const [iconList, setIconList] = useState([]);
@@ -12,7 +12,11 @@ const IconContainer = ({ path }) => {
     <>
       <h1>My dropbox icon library</h1>
       {iconList.map((value) => (
-        <p key={value.id}>{value.name}</p>
+        value.icons.map((elements) => (
+          elements && (
+            <Icon key={elements.name} path={elements.path_display} />
+          )
+        ))
       ))}
     </>
   );

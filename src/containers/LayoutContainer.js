@@ -13,7 +13,6 @@ const LayoutContainer = () => {
   useEffect(() => {
     dbx.filesListFolder({ path: '' }).then((data) => { setPath(data.entries); });
   }, []);
-
   return (
     <main>
       <h1>Icon Library</h1>
