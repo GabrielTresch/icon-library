@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { Dropbox } from 'dropbox';
 import axiox from 'axios';
-import IconContainer from './IconContainer';
+import IconContainer from './IconContainer/IconContainer';
+import './LayoutContainer.scss'
 
 const LayoutContainer = () => {
   const accessToken = process.env.REACT_APP_TOKEN;

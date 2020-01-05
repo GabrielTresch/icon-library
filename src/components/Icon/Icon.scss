@@ -1,0 +1,22 @@
+.card{
+  background: blue;
+  margin: 10px;
+  width: 150px;
+  display: flex;
+
+  div{
+    width: initial !important;
+    height: initial !important;
+    svg{
+      margin: auto;
+    }
+  }
+}
+
+.icon-card{
+  padding: 5px 0;
+  svg{
+    width:initial !important;
+    height:48px !important;
+  }
+}

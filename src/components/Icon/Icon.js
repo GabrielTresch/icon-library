@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Lottie from 'react-lottie';
 import { Dropbox } from 'dropbox';
 import axiox from 'axios';
-import useIntersect from '../utils/useIntersect';
+import useIntersect from '../../utils/useIntersect';
+import './Icon.scss';
 
-const Icon = ({ path }) => {
+const Icon = ({ path, type }) => {
   const [icon, setIcon] = useState();
   const [fetched, setFetched] = useState(false);
   const [ref, { entry }] = useIntersect({});
@@ -35,11 +36,9 @@ const Icon = ({ path }) => {
     },
   };
   return (
-    <div ref={ref} onMouseEnter={() => setState(!state)} onMouseLeave={() => setState(!state)}>
+    <div ref={ref} onMouseEnter={() => setState(!state)} onMouseLeave={() => setState(!state)} className={type !== 'animations' ? 'icon-card card' : 'card'}>
       <Lottie
         options={defaultOptions}
-        height={100}
-        width={100}
         isStopped={state}
       />
     </div>
@@ -48,6 +47,7 @@ const Icon = ({ path }) => {
 
 Icon.propTypes = {
   path: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Icon;

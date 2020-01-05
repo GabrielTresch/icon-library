@@ -16,6 +16,7 @@ const IconList = async (path) => {
       });
     })
   )));
+  iconList.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
   return iconList;
 };
 
