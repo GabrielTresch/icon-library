@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { Dropbox } from 'dropbox';
-import axiox from 'axios';
+import axios from 'axios';
 import IconContainer from './IconContainer/IconContainer';
 import './LayoutContainer.scss'
 
 const LayoutContainer = () => {
   const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axiox });
+  const dbx = new Dropbox({ accessToken, axios });
 
   const [path, setPath] = useState([]);
 

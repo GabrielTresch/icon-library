@@ -13,16 +13,18 @@ const IconContainer = ({ path }) => {
   return (
     <>
       <h1>My dropbox icon library</h1>
-      <div className="icon-container">
+      <div>
         {iconList.map((value) => (
-          <>
+          <div key={value.name}>
             <h3>{value.name}</h3>
-            {value.icons.map((elements) => (
-              elements && (
-              <Icon key={elements.name} path={elements.path_display} type={value.name} />
-              )
-            ))}
-          </>
+            <div className="icon-container">
+              {value.icons.map((elements) => (
+                elements && (
+                <Icon key={elements.name} path={elements.path_display} type={value.name} />
+                )
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </>

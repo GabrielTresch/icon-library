@@ -1,9 +1,9 @@
 import { Dropbox } from 'dropbox';
-import axiox from 'axios';
+import axios from 'axios';
 
 const IconList = async (path) => {
   const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axiox });
+  const dbx = new Dropbox({ accessToken, axios });
 
   const iconList = [];
 

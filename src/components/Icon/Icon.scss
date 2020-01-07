@@ -2,21 +2,31 @@
   background: blue;
   margin: 10px;
   width: 150px;
+  min-height: 62px;
   display: flex;
-
   div{
     width: initial !important;
     height: initial !important;
+    display: flex;
     svg{
       margin: auto;
     }
   }
 }
 
-.icon-card{
+.animated-icons{
   padding: 5px 0;
   svg{
     width:initial !important;
     height:48px !important;
+  }
+}
+
+.icons{
+  display: flex;
+  padding: 5px 0;
+  svg{
+    margin: auto;
+    height: 48px;
   }
 }
