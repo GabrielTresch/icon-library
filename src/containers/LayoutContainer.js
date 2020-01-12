@@ -1,18 +1,17 @@
-/* eslint-disable */
+/* eslint-disable*/
 import React, { useEffect, useState } from 'react';
 import { Dropbox } from 'dropbox';
-import axios from 'axios';
 import IconContainer from './IconContainer/IconContainer';
-import './LayoutContainer.scss'
+import './LayoutContainer.scss';
 
 const LayoutContainer = () => {
   const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axios });
+  const dbx = new Dropbox({ accessToken, fetch });
 
   const [path, setPath] = useState([]);
 
   useEffect(() => {
-    dbx.filesListFolder({ path: '' }).then((data) => { setPath(data.entries); });
+    dbx.filesListFolder({ path: '' }).then((data) => setPath(data.entries.sort((a, b) => a.name.localeCompare(b.name))));
   }, []);
   return (
     <main>

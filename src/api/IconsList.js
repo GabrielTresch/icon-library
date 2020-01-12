@@ -1,12 +1,10 @@
 import { Dropbox } from 'dropbox';
-import axios from 'axios';
 
 const IconList = async (path) => {
   const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axios });
-
+  const dbx = new Dropbox({ accessToken, fetch });
+  console.log(path);
   const iconList = [];
-
   await Promise.all(path.map((value, i) => (
     dbx.filesListFolder({ path: value.path_display }).then((data) => {
       iconList.push({
@@ -17,6 +15,7 @@ const IconList = async (path) => {
     })
   )));
   iconList.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+  console.log(iconList);
   return iconList;
 };
 

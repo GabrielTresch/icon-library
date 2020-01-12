@@ -1,10 +1,8 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
 import Lottie from 'react-lottie';
 import { Dropbox } from 'dropbox';
-import axios from 'axios';
 import useIntersect from '../../utils/useIntersect';
 import './Icon.scss';
 
@@ -15,7 +13,7 @@ const Icon = ({ path, type }) => {
   const [state, setState] = useState(true);
 
   const accessToken = process.env.REACT_APP_TOKEN;
-  const dbx = new Dropbox({ accessToken, axios });
+  const dbx = new Dropbox({ accessToken, fetch });
 
   const testArray = [];
 
@@ -26,18 +24,10 @@ const Icon = ({ path, type }) => {
         const blob = data.fileBlob;
         const reader = new FileReader();
         reader.readAsText(blob);
-        // reader.addEventListener('loadend', () => setIcon(type !== 'icons' ? JSON.parse(reader.result) : reader.result));
-        reader.addEventListener('loadend', () => {
-          if (type !== 'icons') {
-            setIcon(JSON.parse(reader.result));
-          } else {
-            setIcon(parse(reader.result));
-          }
-        });
+        reader.addEventListener('loadend', () => (type !== 'icons' ? setIcon(JSON.parse(reader.result)) : setIcon(parse(reader.result))));
       });
     }
   }, [dbx, entry.isIntersecting, fetched, icon, path, testArray, type]);
-
   const defaultOptions = {
     loop: false,
     autoplay: false,

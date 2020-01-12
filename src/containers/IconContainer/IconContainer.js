@@ -9,7 +9,6 @@ const IconContainer = ({ path }) => {
   useEffect(() => {
     IconList(path).then((data) => (setIconList(data)));
   }, [path]);
-  console.log('gab', iconList);
   return (
     <>
       <h1>My dropbox icon library</h1>
