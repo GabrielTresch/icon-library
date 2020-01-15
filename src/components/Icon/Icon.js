@@ -6,7 +6,7 @@ import { Dropbox } from 'dropbox';
 import useIntersect from '../../utils/useIntersect';
 import './Icon.scss';
 
-const Icon = ({ path, type }) => {
+const Icon = ({ path, type, name }) => {
   const [icon, setIcon] = useState();
   const [fetched, setFetched] = useState(false);
   const [ref, { entry }] = useIntersect({});
@@ -14,8 +14,6 @@ const Icon = ({ path, type }) => {
 
   const accessToken = process.env.REACT_APP_TOKEN;
   const dbx = new Dropbox({ accessToken, fetch });
-
-  const testArray = [];
 
   useEffect(() => {
     if (entry.isIntersecting && !fetched) {
@@ -27,7 +25,8 @@ const Icon = ({ path, type }) => {
         reader.addEventListener('loadend', () => (type !== 'icons' ? setIcon(JSON.parse(reader.result)) : setIcon(parse(reader.result))));
       });
     }
-  }, [dbx, entry.isIntersecting, fetched, icon, path, testArray, type]);
+  }, [dbx, entry.isIntersecting, fetched, icon, path, type]);
+
   const defaultOptions = {
     loop: false,
     autoplay: false,
@@ -44,10 +43,12 @@ const Icon = ({ path, type }) => {
             options={defaultOptions}
             isStopped={state}
           />
+          <span>{name}</span>
         </div>
       ) : (
         <div ref={ref} onMouseEnter={() => setState(!state)} onMouseLeave={() => setState(!state)} className={`${type} card`}>
           {icon}
+          <span>{name}</span>
         </div>
       )}
     </>
@@ -57,6 +58,7 @@ const Icon = ({ path, type }) => {
 Icon.propTypes = {
   path: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default Icon;

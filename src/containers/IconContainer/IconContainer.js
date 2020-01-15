@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import IconList from '../../api/IconsList';
@@ -17,9 +18,9 @@ const IconContainer = ({ path }) => {
           <div key={value.name}>
             <h3>{value.name}</h3>
             <div className="icon-container">
-              {value.icons.map((elements) => (
-                elements && (
-                <Icon key={elements.name} path={elements.path_display} type={value.name} />
+              {value.icons.map((element) => (
+                element && (
+                <Icon key={element.name} name={element.name} path={element.path_display} type={value.name} />
                 )
               ))}
             </div>

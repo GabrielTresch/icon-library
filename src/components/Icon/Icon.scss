@@ -3,6 +3,7 @@
   width: 150px;
   min-height: 62px;
   display: flex;
+  flex-direction: column;
   div{
     width: initial !important;
     height: initial !important;
@@ -10,6 +11,11 @@
     svg{
       margin: auto;
     }
+  }
+  span{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
   }
 }
 
