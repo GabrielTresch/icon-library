@@ -15,6 +15,22 @@ const Icon = ({ path, type, name }) => {
   const accessToken = process.env.REACT_APP_TOKEN;
   const dbx = new Dropbox({ accessToken, fetch });
 
+  const nameReplace = (title) => {
+    const finalTitle = title.split('-');
+
+    // eslint-disable-next-line no-return-assign
+    // test.map((val, i) => (
+    //   // console.log(test, test.length, '--->', val, i)
+    //   <>
+    //     { i !== 0 && i !== test.length - 1 && (
+    //       finalTitle += val
+    //     )}
+    //     {console.log(finalTitle)}
+    //   </>
+    // ));
+    return finalTitle[1];
+  };
+
   useEffect(() => {
     if (entry.isIntersecting && !fetched) {
       setFetched(true);
@@ -43,12 +59,12 @@ const Icon = ({ path, type, name }) => {
             options={defaultOptions}
             isStopped={state}
           />
-          <span>{name}</span>
+          <span>{nameReplace(name)}</span>
         </div>
       ) : (
         <div ref={ref} onMouseEnter={() => setState(!state)} onMouseLeave={() => setState(!state)} className={`${type} card`}>
           {icon}
-          <span>{name}</span>
+          <span>{nameReplace(name)}</span>
         </div>
       )}
     </>
